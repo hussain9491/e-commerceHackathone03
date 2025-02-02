@@ -1,6 +1,5 @@
 // SearchBar.tsx
 import React, { useState } from 'react';
-
 const SearchBar = ({ onSearch }: { onSearch: (query: string) => void }) => {
   const [query, setQuery] = useState('');
 

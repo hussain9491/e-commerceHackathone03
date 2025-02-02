@@ -1,420 +1,325 @@
-import React from 'react'
-  import Header from "../../components/Header"
-  import Image from 'next/image'
-  import page3image4 from "../../../(auth)/page3image4.png"
-  import page3image1 from "../../../(auth)/page3image1.png"
-  import page3image2 from "../../../(auth)/page3image2.png"
-  import page3image3 from "../../../(auth)/page3image3.png"
-  import coffeetable from "../../../(auth)/coffeetable.png"
-  import Kent_coffee_table_1 from "../../../(auth)/Kent_coffee_table1.png"
-  import Round_coffee_table1 from "../../../(auth)/Round coffee table_color1.png"
-  import Reclaimed_teak_coffee_table1 from "../../../(auth)/Reclaimed teak coffee table1.png"
-  import Plainconsole_1 from "../../../(auth)/Plainconsole_1.png"
-  import ReclaimedteakSideboard1 from "../../../(auth)/Reclaimed teak coffee table1.png"
-  import SJP_08251 from "../../../(auth)/SJP_08251.png"
-  import Bellachairandtable1 from "../../../(auth)/Bellachairandtable1.png"
-  import homeleft from "../../../(auth)/homeleft.png"
-  import Outdoorsofaset1 from "../../../(auth)/Outdoorsofaset1.png"
-  import Mayasofathreeseater1 from "../../../(auth)/Mayasofathreeseater1.png"
-  import page4item1 from "../../../(auth)/page4item1.png"
-  import { HiAdjustmentsHorizontal, HiAdjustmentsVertical, HiBars3, HiSquares2X2 } from 'react-icons/hi2'
-  import { HiDotsVertical, HiSwitchVertical } from 'react-icons/hi'
-  import Link from 'next/link'
-  // import products from '@/sanity/schemaTypes/products'
-  import { client } from '@/sanity/sanityClient'
-  // import { client } from '@/sanity/client'
 
-  type Product = {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    stockLevel: number;
-    discountPercentage: number;
-    isFeaturedProduct: boolean;
-    category: string;
-    imageUrl: string;
-  };
+"use client";
+import { useState } from 'react';
+import Header from "../../components/Header";
+import Image from 'next/image';
+import { HiAdjustmentsHorizontal, HiSquares2X2, HiBars3 } from 'react-icons/hi2';
+import { HiSwitchVertical } from 'react-icons/hi';
+import Link from 'next/link';
 
-  async function fetchproducts() {
+// Import all images (adjust paths as needed)
+const images = {
+  page3image1: require("../../../(auth)/page3image1.png"),
+  page3image2: require("../../../(auth)/page3image2.png"),
+  page3image3: require("../../../(auth)/page3image3.png"),
+  page3image4: require("../../../(auth)/page3image4.png"),
+  coffeetable: require("../../../(auth)/coffeetable.png"),
+  Bellachairandtable1 : require("../../../(auth)/Bellachairandtable1.png"),
+  homeleft : require("../../../(auth)/homeleft.png"),
+  Outdoorsofaset1 : require("../../../(auth)/Outdoorsofaset1.png"),
+  Mayasofathreeseater1 : require("../../../(auth)/Mayasofathreeseater1.png"),
+  Kent_coffee_table_1 : require("../../../(auth)/Kent_coffee_table1.png"),
+  Round_coffee_table1 : require("../../../(auth)/Round coffee table_color1.png"),
+  Reclaimed_teak_coffee_table1 : require("../../../(auth)/Reclaimed teak coffee table1.png"),
+  Plainconsole_1 : require("../../../(auth)/Plainconsole_1.png"),
+  Stuartsofa1 : require("../../../(auth)/Stuart sofa 1.png"),
+  sjp_08251 : require("../../../(auth)/SJP_08251.png"),
+  plainconsole_1 : require("../../../(auth)/Plainconsole_1.png"),
+  homeRight : require("../../../(auth)/homeRight.png"),
+  ReclaimedteakSideboard1 : require("../../../(auth)/Reclaimed teak coffee table1.png"),
+  // Import all other images similarly...
+};
 
+export default function ShopPage() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
+  // Define categories array
+  const categories = ['all', 'sofa', 'dining', 'outdoor', 'console', 'table', 'sideboard', 'chair'];
 
-  const query = `*[_typeof == newProducts] {
-    category, id, price, name, description,stockLevel,
-      discountPercentage ,isFeaturedProduct    }`
-    
-  const products = await client.fetch(query)
-  console.log(products);
-
-
-
-
-
-
-
-
-
-
-
-    return (
-      <div className='overflow-x-hidden overflow-y-hidden  '>
-        <Header />
+  // Product data array for DRY code
+  
+  const products = [
+    {
+      image: images.page3image1,
+      name: "Trenton modular sofa_3",
+      price: "25,000.00",
+      category: "sofa"
+    },
+    {
+      image: images.page3image2,
+      name: "Granite dining table with dining chairs",
+      price: "25,000.00",
+      category: "dining"
+    },
+    {
+    image: images.page3image3,
+      name: "Outdoor bar table and stoole",
+      price: "25,000.00",
+      category: "outdoor"
+    },
+    {
+      image: images.page3image4,
+        name: "plain console with teak mirror",
+        price: "25,000.00",
+        category: "console"
+      },
       
-        {/* background section  */}
-        <div className="h-80 w-full bg-Bi justify-center items-center pt-24 bg-cover bg-center">
+    {
+      image: images.coffeetable,
+        name: "Granite dining table with dining chairs",
+        price: "15,000.00",
+        category: "dining"
+      },
+      {
+        image: images.Kent_coffee_table_1,
+          name: "kent coffee table",
+          price: "250,000.00",
+          category: "table"
+        },
+        {
+          image: images.Round_coffee_table1,
+            name: "round coffee table colour2",
+            price: "251,000.00",
+            category: "table"
+          },
+          {
+            image: images.Reclaimed_teak_coffee_table1,
+              name: "reclaimed teak coffee table",
+              price: "25,200.00",
+              category: "table"
+            },
+            {
+              image: images.Plainconsole_1,
+                name: "plain console",
+                price: "258,200.00",
+                category: "console"
+              },
+              {
+                image: images.ReclaimedteakSideboard1,
+                  name: "ReclaimedteakSideboard1",
+                  price: "245,000.00",
+                  category: "sideboard"
+                },
+                {
+                  image: images.sjp_08251,
+                    name: "bella chair",
+                    price: "35,000.00",
+                    category: "chair"
+                  },
+                  {
+                    image: images.Bellachairandtable1,
+                      name: "Granite dining table with dining chairs",
+                      price: "25,000.00",
+                      category: "dining"
+                    },
+                    
+                  {
+                    image: images.homeRight,
+                      name: "Outdoor sofa set",
+                      price: "25,000.00",
+                      category: "sofa"
+                    },
 
-          <div className="relative text-center ">
-            <h1 className="text-5xl font-bold text-black">Shop </h1>
-            <p className="text-gray-700 mt-2 pt-5">
-              <span className="font-semibold text-black">Home</span> <span className="mx-2">&gt;</span> <span>Shop</span>
+                    {
+                      image: images.homeleft,
+                        name: "Table",
+                        price: "4,000.00",
+                        category: "table"
+                      },
+                      {
+                        image: images.Outdoorsofaset1,
+                          name: "Asgard sofa ",
+                          price: "65,000.00",
+                          category: "sofa"
+                        },
+                        {
+                          image: images.Mayasofathreeseater1,
+                            name: "Mayo Sofa three seater",
+                            price: "455,000.00",
+                            category: "sofa"
+                          },
+                          
+            
+    // Add all other products here...
+  ];
+
+
+      // Filtering logic
+  const filteredProducts = products.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  return (
+    <div className='overflow-x-hidden overflow-y-hidden'>
+      <Header />
+      
+      {/* Hero Section */}
+      <div className="h-48 md:h-80 w-full bg-Bi flex items-center justify-center bg-cover bg-center">
+        <div className="text-center px-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-black">Shop</h1>
+          <nav className="text-sm md:text-base mt-2 md:mt-4">
+            <Link href="/" className="text-gray-700 hover:text-gray-900">Home</Link>
+            <span className="mx-2 text-gray-700">&gt;</span>
+            <span className="text-gray-700">Shop</span>
+          </nav>
+        </div>
+      </div>
+
+      {/* Search and Filters Section */}
+      <div className="sticky top-0 bg-custompin z-10">
+        {/* Search Bar */}
+        <div className="px-4 md:px-8 py-4 border-b">
+          <input
+            type="text"
+            placeholder="Search products..."
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        {/* Category Filters */}
+        <div className="px-4 md:px-8 py-4 flex flex-wrap gap-2 border-b">
+          {categories.map(category => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-4 py-2 rounded-full text-sm ${
+                selectedCategory === category
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-200 hover:bg-gray-300'
+              }`}
+            >
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </button>
+          ))}
+        </div>
+
+        {/* Original Filters Section */}
+        <div className='h-16 md:h-20 w-full flex items-center px-4 md:px-8'>
+          <div className="w-full flex justify-between items-center">
+            {/* Mobile Filters */}
+            <div className="md:hidden flex items-center gap-2">
+              <button 
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="flex items-center gap-2"
+              >
+                <HiAdjustmentsHorizontal className="w-5 h-5 text-black" />
+                <span className="text-sm">Filter</span>
+              </button>
+              <HiSquares2X2 className="w-4 h-4 text-black" />
+            </div>
+
+            {/* Desktop Filters */}
+            <div className="hidden md:flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <HiAdjustmentsHorizontal className="w-6 h-6 text-black" />
+                <span>Filter</span>
+              </div>
+              <HiSquares2X2 className="w-5 h-5 cursor-pointer" />
+              <HiBars3 className="w-5 h-5 cursor-pointer" />
+              <HiSwitchVertical className="w-5 h-5 cursor-pointer" />
+              <span>Showing {filteredProducts.length} of {products.length} results</span>
+            </div>
+
+            {/* Sort Controls */}
+            <div className="hidden md:flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <span>Show</span>
+                <button className='h-8 w-8 bg-white text-gray-300 text-sm'>16</button>
+              </div>
+              <div className="flex items-center gap-2">
+                <span>Sort by</span>
+                <button className='h-8 w-24 bg-white text-gray-300 text-sm'>Default</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Updated Product Grid using filteredProducts */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 p-4 md:p-8">
+        {filteredProducts.map((product, index) => (
+          <div 
+            key={index}
+            className="group relative transform transition-transform duration-300 hover:scale-105"
+          >
+            <div className="aspect-square w-full overflow-hidden rounded-lg">
+              <Image
+                src={product.image}
+                alt={product.name}
+                className="h-auto w-auto object-cover"
+                width={500}
+                height={500}
+              />
+            </div>
+            <div className="text-center mt-4">
+              <h3 className="text-xs md:text-sm text-gray-900">{product.name}</h3>
+              <p className="text-base md:text-lg font-semibold mt-2">RS {product.price}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {/* Pagination */}
+      <div className="flex justify-center items-center gap-2 md:gap-4 py-8 md:py-12">
+        {[1, 2, 3].map((page) => (
+          <Link
+            key={page}
+            href="/shop"
+            className="h-10 w-10 md:h-12 md:w-12 bg-customskin text-gray-950 rounded-lg flex items-center justify-center text-sm md:text-base hover:bg-opacity-80"
+          >
+            {page}
+          </Link>
+        ))}
+        <Link
+          href="/shop"
+          className="h-10 w-16 md:h-12 md:w-20 bg-customskin text-gray-950 rounded-lg flex items-center justify-center text-sm md:text-base hover:bg-opacity-80"
+        >
+          Next
+        </Link>
+      </div>
+
+      {/* Services Section */}
+      <div className="bg-custompin py-8 md:py-12 px-4 md:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="text-center">
+            <h2 className="text-lg md:text-xl font-bold">Free Delivery</h2>
+            <p className="text-sm md:text-base text-gray-600 mt-2">
+              For all orders over $50, consectetur adipim scing elit
+            </p>
+          </div>
+          <div className="text-center">
+            <h2 className="text-lg md:text-xl font-bold">90 Days Return</h2>
+            <p className="text-sm md:text-base text-gray-600 mt-2">
+              If goods have problems, consectetur adipim scing elit
+            </p>
+          </div>
+          <div className="text-center">
+            <h2 className="text-lg md:text-xl font-bold">Secure Payment</h2>
+            <p className="text-sm md:text-base text-gray-600 mt-2">
+              100% secure payment, consectetur adipim scing elit
             </p>
           </div>
         </div>
-
-
-
-  
-        {/* search option  */}
-        <div className='bg-custompin h-20 mt-10 w-screen sticky top-0 flex justify-around items-center max-sm:hidden '>
-          <div className='flex gap-4'>
-
-            {/* Filter Icons  */}
-            <div className="flex items-center gap-2 cursor-pointer">
-
-            <HiAdjustmentsHorizontal className="w-6 h-7 text-black"/>
-            <h1 className='text-lg font-md border-solid'>Filter</h1>
-            </div>
-
-            <HiSquares2X2 className="w-5 h-5 mt-1 cursor-pointer text-black" />
-
-
-            <HiBars3 className="w-5 h-5 mt-1 cursor-pointer text-black" />
-            <HiSwitchVertical className="w-5 h-5 mt-1 cursor-pointer text-black ml-6" />
-          <h1 className=' text-black text-base font-md ml-6'>Showing 1-16 of 32 results</h1>
-          </div>
-
-  <div className='flex ml-16  gap-6'>
-    <h1 className='pt-2  text-lg font-md'>Show</h1>
-    <button className='h-11 w-11 bg-white text-gray-300'>16</button>
-
-
-    <h1 className='pt-2  text-lg font-md'>Short by</h1>
-    <button className='h-11 w-28 items-start bg-white text-gray-300'> Default</button>
-    
-  </div>
-        </div>
-
-        {/* Images Section */}
-
-        <div className="flex   justify-around items-center pt-20    " >
-
-
-
-
-          <div className="h-48 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="Trenton modular sofa_3"> <Image src={page3image1} alt="Trenton modular sofa_3" /></button>
-          </div>
-
-
-
-          <div className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg  h-48 w-52">
-          <button title="Trenton modular sofa_3" >  <Image src={page3image2} alt="Granite dining table with 
-  dining chairs" /> </button>
-          </div>
-
-          <div className="h-56 mb-10 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="Trenton modular sofa_3">  <Image src={page3image3} alt="Outdoor bar table and 
-  stoole"/> </button>
-          </div>
-
-
-          <div className="h-48 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="Trenton modular sofa_3"> <Image src={page3image4} alt="Plain console with teak 
-  mirror" /> </button>
-          </div>
-
-        </div>
-
-        {/* This is   Selling  items Name and Price */}
-
-        <div className="flex flex-row justify-around items-center  text-center -mt-10 " >
-
-
-
-          <div className="flex flex-col " >
-            <h3 className="text-sm text-gray-900 text-center pt-16">Trenton modular sofa_3 </h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4"> RS 25,000.00</h1>
-          </div>
-
-
-
-          <div className="flex flex-col">
-            <h3 className="text-sm text-gray-900 text-center pt-16">Granite dining table with
-              dining chairs </h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4"> RS 25,000.00</h1>
-          </div>
-
-
-
-          <div className="flex flex-col">
-            <h3 className="text-sm text-gray-900 text-center pt-20">Outdoor bar table and
-              stoole </h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4"> RS 25,000.00</h1>
-          </div>
-
-
-
-          <div className="flex flex-col  ">
-            <h3 className="text-sm text-gray-900 text-center pt-16">Plain console with teak
-              mirror</h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4"> RS 25,000.00</h1>
-          </div>
-
-
-
-
-        </div>
-
-        {/* 2nd Row Section  */}
-
-        {/* Images Section */}
-
-        <div className="flex  gap-6 justify-around items-center pt-20  " >
-
-
-
-
-          <div className="h-48 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="Trenton modular sofa_3"> <Image src={coffeetable} alt="coffee-Table" /> </button>
-          </div>
-
-
-
-          <div className="h-48 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="Trenton modular sofa_3">  <Image src={Kent_coffee_table_1} alt="Kent_coffee_table_1" /> </button>
-          </div>
-
-
-          <div className="h-56 mb-10 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="Trenton modular sofa_3"> <Image src={Round_coffee_table1} alt="Round_coffee_table1" /> </button>
-          </div>
-
-
-
-          <div className="h-48 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="Trenton modular sofa_3"> <Image src={Reclaimed_teak_coffee_table1} alt="Reclaimed_teak_coffee_table1" /> </button>
-          </div>
-
-        </div>
-
-        {/* This is   Selling  items Name and Price */}
-
-        <div className="flex flex-row justify-around items-center  text-center -mt-10 " >
-
-
-          <div className="flex flex-col " >
-            <h3 className="text-sm text-gray-900 text-center pt-10">Grain coffee table </h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4"> RS 15,000.00</h1>
-          </div>
-
-
-
-
-          <div className="flex flex-col">
-            <h3 className="text-sm text-gray-900 text-center pt-10">Kent coffee table</h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4"> RS 250,000.00</h1>
-          </div>
-
-
-
-          <div className="flex flex-col">
-            <h3 className="text-sm text-gray-900 text-center pt-10">Round coffee table_color 2 </h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4"> RS 251,000.00</h1>
-          </div>
-
-
-
-
-          <div className="flex flex-col ">
-            <h3 className="text-sm text-gray-900 text-center pt-10">Reclaimed teak coffee table</h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4"> RS 25,200.00</h1>
-          </div>
-
-        </div>
-
-
-        {/* this is 3rd row item  */}
-        {/* Images Section */}
-
-        <div className="flex  gap-6 justify-around items-center pt-20  " >
-
-
-
-          <div className="h-48 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="Plainconsole_1">   <Image src={Plainconsole_1} alt="Plainconsole_1" /> </button>
-          </div>
-
-
-
-          <div className="h-48 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="ReclaimedteakSideboard1"><Image src={ReclaimedteakSideboard1} alt="ReclaimedteakSideboard1" /> </button>
-          </div>
-
-
-
-          <div className="h-56 mb-5 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="SJP_08251">   <Image src={SJP_08251} alt="SJP_08251" /> </button>
-          </div>
-
-
-
-          <div className="h-48 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-            <Image src={Bellachairandtable1} alt="Bellachairandtable1" />
-          </div>
-
-        </div>
-
-        {/* This is   Selling  items Name and Price */}
-
-        <div className="flex flex-row justify-around items-center  text-center -mt-10 " >
-
-
-          <div className="flex flex-col justify-center " >
-            <h3 className="text-sm text-gray-900 text-center pt-10">Trenton modular sofa_3 </h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4"> RS 258,200.00</h1>
-          </div>
-
-
-
-          <div className="flex flex-col ">
-            <h3 className="text-sm text-gray-900 text-center pt-10 pr-12">Reclaimed teak Sideboard </h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4 pr-8"> RS 20,000.00</h1>
-          </div>
-
-
-          <div className="flex flex-col">
-            <h3 className="text-sm text-gray-900 text-center pt-1 pr-10 ">SJP_0825  </h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4 pr-8"> RS 200,000.00</h1>
-          </div>
-
-
-
-          <div className="flex flex-col ">
-            <h3 className="text-sm text-gray-900 text-center pt-10">Bella chair and table</h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4"> RS 100,000.00</h1>
-          </div>
-
-        </div>
-
-        {/* This is   Selling  items Images*/}
-        {/* 4th row  */}
-
-        <div className="flex  gap-6 justify-around items-center pt-20  " >
-
-
-          <div className="h-48 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="Plainconsole_1">  <Image src={homeleft} alt="Granite square side table" /> </button>
-          </div>
-
-
-          <div className="h-48 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="Plainconsole_1"> <Image src={page4item1} alt="Asgaard sofa" /> </button>
-          </div>
-
-
-          <div className="h-52 mb-0 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="Plainconsole_1">  <Image src={Mayasofathreeseater1} alt="Maya sofa three seater" /> </button>
-          </div>
-
-
-          <div className="h-48 w-52 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-          <button title="Plainconsole_1">  <Image src={Outdoorsofaset1} alt="Outdoor sofa set" /> </button>
-          </div>
-
-        </div>
-
-        {/* This is   Selling  items Name and Price */}
-
-        <div className="flex flex-row justify-around items-center  text-center -mt-10 " >
-
-
-          <div className="flex flex-col justify-center " >
-            <h3 className="text-sm text-gray-900 text-center pt-10">Granite square side table </h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4"> RS 258,800.00</h1>
-          </div>
-
-
-          <div className="flex flex-col ">
-            <h3 className="text-sm text-gray-900 text-center pt-10 pr-12">Asgaard sofa </h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4 pr-8"> RS 250,000.00</h1>
-          </div>
-
-
-
-          <div className="flex flex-col">
-            <h3 className="text-sm text-gray-900 text-center pt-0 pr-10 ">Maya sofa three seater </h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4 pr-8"> RS 115,000.00</h1>
-          </div>
-
-
-          <div className="flex flex-col ">
-
-            <h3 className="text-sm text-gray-900 text-center pt-10">Outdoor sofa set</h3>
-            <h1 className="text-lg text-black text-center font-semibold pt-4"> RS 244,000.00</h1>
-          </div>
-        </div>
-
-
-  <div className='bg-white h-80 flex justify-center items-center text-sm gap-4 '>
-    <button className='h-12 w-12 bg-customskin text-gray-950 mt-36 rounded-lg'> <a href="/shop">1</a> </button>
-    <button className='h-12 w-12 bg-customYellow text-gray-950 mt-36 rounded-lg'><Link href="/shop">2</Link></button>
-    <button className='h-12 w-12 bg-customskin text-gray-950 mt-36 rounded-lg'><a href="/shop">3 </a></button>
-    <button className='h-11 w-20 bg-customskin text-gray-950 mt-36 rounded-lg' > <a href="/shop">Next</a></button>
-  </div>
-
-
-
-
-  <div className="flex flex-row items-center gap-14 justify-around mt-7 bg-custompin h-72 mb-32 ">
-                  <div className="w-[80%] flex gap-16">
-
-
-                      <div className=" flex flex-col ">
-
-                          <h1 className="font-extrabold text-2xl">Free Delivery</h1>
-
-                          <p className="text-gray-500 text-md pt-4">For all oders over $50, consectetur
-                              adipim scing elit</p>
-                      </div>
-
-                      <div className=" flex flex-col ">
-
-                          <h1 className="font-extrabold text-2xl ">90 Days Return</h1>
-
-                          <p className="text-gray-500 text-md pt-4">If goods have problems, consectetur
-                              adipim scing elit.</p>
-                      </div>
-                      <div className=" flex flex-col ">
-
-                          <h1 className="font-extrabold text-2xl">Free Delivery</h1>
-                          <p className="text-gray-500 text-md pt-4">100% secure payment, consectetur
-                              adipim scing elit</p>
-                      </div>
-
-
-                  </div> 
-              </div> 
-
-
-
-
-
       </div>
-    )
-  }
-
-  export default fetchproducts;
-
-
+    </div>
+  );
+}

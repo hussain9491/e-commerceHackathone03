@@ -14,35 +14,20 @@ import page4img2 from "../(auth)/page4img2.png"
 import page4img3 from "../(auth)/page4img3.png"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Header from "./components/Header";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faClock , faCalendarAlt} from "@fortawesome/free-solid-svg-icons";
+
+
 export default function Home() {
   return (
     <div className="overflow-x-hidden overflow-y-hidden">
       <div className="bg-yellow-100 min-h-80 ">
         {/* Header */}
-        <header className="p-4">
-          <div className="container mx-auto flex justify-between items-center">
-            {/* Navigation Links */}
-            <nav className="flex space-x-14 justify-center  pl-[40%]">
-              <a href="/" className="text-black hover:text-gray-700 hover:underline">Home</a>
-              <a href="/shop" className="text-black hover:text-gray-700 hover:underline">Shop</a>
-              <a href="/blog" className="text-black hover:text-gray-700 hover:underline">Blog</a>
-              <Link href="/contact" className="text-black hover:text-gray-700 hover:underline">Contact</Link>
-            </nav>
-
-            {/* Icons */}
-            <div className="flex space-x-8 pr-14 text-black">
-             <Link href="/account"> <FaUser className="hover:text-gray-700 cursor-pointer" size={20} /> </Link>
-              <FaSearch className="hover:text-gray-700 cursor-pointer" size={20} />
-              <FaHeart className="hover:text-gray-700 cursor-pointer" size={20} />
-              <FaShoppingCart className="hover:text-gray-700 cursor-pointer" size={20} />
-            </div>
-          </div>
-        </header>
-
-        {/* Hero Section */}
+<div >
+   <Header/>
+</div>
         <section className="container mx-auto flex items-center justify-center p-8">
           {/* Text Content */}
           <div className="max-w-md pr-20 pt-8">

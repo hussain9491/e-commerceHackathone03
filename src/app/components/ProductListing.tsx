@@ -7,6 +7,11 @@ interface Product {
   name: string;
   imageUrl: string;
   price: number;
+  description: string;
+  discountPercentage: number;
+  isFeaturedProduct: boolean;
+  stockLevel: number;
+  category: string;
 }
 
 const ProductListing = ({ products }: { products: Product[] }) => {

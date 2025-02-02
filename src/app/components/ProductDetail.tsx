@@ -1,39 +1,66 @@
-// ProductDetail.tsx
-import React from 'react';
+// app/components/ProductCard.tsx (updated with wishlist)
+"use client";
 import Image from 'next/image';
+import Link from 'next/link';
+import { useCart } from '../../hooks/useCart';
+import { useWishlist } from '../../hooks/usewishlist';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
-interface Product {
-  id: string;
+export interface Product {
+  _id: string;
   name: string;
-  imageUrl: string;
   price: number;
-  description: string;
-  discountPercentage: number;
+  imageUrl: string; // added imageUrl property
+  id: string;
   stockLevel: number;
+  description: string;
+  category: string;
+  isFeaturedProduct: boolean;
+  imagePath: string;
+  discountPercentage: number;
+  image: string;
+  // Add other properties as needed
 }
+export default function ProductCard({ product }: { product: Product }) {
+  const { addToCart } = useCart();
+  const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
+  const isInWishlist = wishlist.some(item => item._id === product._id);
 
-const ProductDetail = ({ product }: { product: Product }) => {
   return (
-    <div className="p-6 max-w-3xl mx-auto bg-white rounded-lg shadow-md">
-      <Image
-        src={product.imageUrl}
-        alt={product.name}
-        width={500}
-        height={500}
-        className="rounded-lg"
-      />
-      <h1 className="text-2xl font-bold mt-4">{product.name}</h1>
-      <p className="text-gray-600 mt-2">{product.description}</p>
-      <p className="text-xl font-semibold mt-4">${product.price}</p>
-      {product.discountPercentage > 0 && (
-        <p className="text-sm text-red-500">{product.discountPercentage}% off</p>
-      )}
-      <p className="text-sm text-gray-500 mt-2">Stock: {product.stockLevel}</p>
-      <button className="mt-6 bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition">
-        Add to Cart
-      </button>
+    <div className="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition-transform transform hover:scale-105">
+      <div className="relative h-48 w-full">
+        <Image
+          src={product.imageUrl}
+          alt={product.name}
+          fill
+          className="object-cover rounded-lg"
+        />
+      </div>
+      <h3 className="text-lg font-semibold mt-4">{product.name}</h3>
+      <p className="text-gray-600">${product.price}</p>
+      
+      <div className="mt-4 flex justify-between items-center">
+        <button
+          onClick={() => isInWishlist ? removeFromWishlist(product._id) : addToWishlist(product)}
+          className="text-red-500 hover:text-red-700"
+        >
+          {isInWishlist ? <FaHeart size={20} /> : <FaRegHeart size={20} />}
+        </button>
+        
+        <button
+          onClick={() => addToCart(product)}
+          className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
+        >
+          Add to Cart
+        </button>
+        
+        <Link 
+          href={`/product_details/${product._id}`}
+          className="text-blue-500 hover:text-blue-700"
+        >
+          Details
+        </Link>
+      </div>
     </div>
   );
-};
-
-export default ProductDetail;
+}
