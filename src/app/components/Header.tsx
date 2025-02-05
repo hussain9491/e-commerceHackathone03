@@ -5,11 +5,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FaUser, FaSearch, FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
-import { useCart } from '../../hooks/useCart';
+// import { useCart } from '../../hooks/useCart';
 import { useWishlist } from '../../hooks/usewishlist';
-
+import { CartSheet } from '../cartsheet';
+import { useCart } from '../../context/Cartcontext';
 
 export default function Header() {
+  
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -69,20 +71,20 @@ export default function Header() {
               <FaSearch className="hover:text-gray-700 cursor-pointer" size={20} />
             </button>
           )}
-          <Link href="/wishlist" className="relative">
           
             {/* ... wishlist icon ... */}
-
+<Link href="/wishlist" className="relative">
             <FaHeart className="hover:text-gray-700 cursor-pointer" size={20} />
              {wishlist.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                 {wishlist.length}
               </span>
             )}
-          </Link>
-          <Link href="/cart" className="relative">
+        </Link>
+          <Link href="" className="relative">
             {/* ... cart icon ... */}
-            <FaShoppingCart className="hover:text-gray-700 cursor-pointer" size={20} />
+            <CartSheet />
+          
             {cart.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                 {cart.length}

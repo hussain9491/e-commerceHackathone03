@@ -7,9 +7,9 @@ import page4img3 from "../../../(auth)/page4img3.png";
 import Header from '@/app/components/Header';
 export default function BlogPost() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 overflow-x-hidden overflow-y-hidden">
+    <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 py-12 overflow-x-hidden overflow-y-hidden">
       <Header/>
-      {/* Featured Image */}
+      Featured Image
       <div className="mb-12">
         <Image
           src={page4img1}
@@ -18,6 +18,8 @@ export default function BlogPost() {
           height={200}
           className="rounded-lg object-cover  h-64 md:h-96"
         />
+
+        
       </div>
 
       <div className="flex flex-col lg:flex-row gap-12">
@@ -28,8 +30,12 @@ export default function BlogPost() {
             <h1 className="text-3xl md:text-4xl font-bold mb-6">
               Going all-in with millennial design
               </h1>
+              <p className='text-left w-[80%] text-base'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi placeat, odio ab amet, reiciendis totam porro impedit minima dolorem delectus eaque blanditiis consectetur obcaecati earum molestias est voluptatibus veritatis magnam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus laudantium tempora quaerat fugit. Reprehenderit ratione inventore quaerat nesciunt laboriosam! Explicabo corporis tempore debitis earum. Nesciunt, neque doloremque. Veniam, eum molestias.</p>
           </article>
-        </div>
+         </div>
+
+
+
 
         {/* Sidebar */}
         <div className="lg:w-1/3">
@@ -97,6 +103,10 @@ export default function BlogPost() {
           </div>
         </div>
       </div>
+
+
+
+      
     </div>
   );
 }

@@ -31,6 +31,11 @@ const newProductsSchema = {
       title: 'Discount Percentage',
       type: 'number',
     },
+    {
+      name: 'brand',
+      title: 'Brand',
+      type: 'string',
+    },
     //
     {
       name: 'features',

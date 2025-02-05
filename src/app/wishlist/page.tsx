@@ -1,4 +1,5 @@
 // app/wishlist/page.tsx
+"use client"
 import { useWishlist } from '../../hooks/usewishlist';
 import Header from '../components/Header';
 import Image from 'next/image';
@@ -9,6 +10,8 @@ export default function WishlistPage() {
   return (
     <div className="bg-gray-100 min-h-screen">
       <Header />
+      
+
       
       <div className="container mx-auto p-8">
         <h1 className="text-3xl font-bold mb-8">Your Wishlist</h1>

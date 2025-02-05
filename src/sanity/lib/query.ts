@@ -27,7 +27,7 @@ export const allProducts = defineQuery(`
     discountPercentage,
     isFeaturedProduct,
     stockLevel,
-    category
+    category,
   }
 `);
 
@@ -37,6 +37,8 @@ export const productById = defineQuery(`
     name,
     "imageUrl": imageUrl.asset->url,
     price,
+    rating,
+    brand,
     description,
     stockLevel,
     category,

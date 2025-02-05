@@ -1,4 +1,4 @@
-// app/components/ProductCard.tsx (updated with wishlist)
+// app/components/ProductCard.tsx
 "use client";
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ export interface Product {
   _id: string;
   name: string;
   price: number;
-  imageUrl: string; // added imageUrl property
+  imageUrl: string;
   id: string;
   stockLevel: number;
   description: string;
@@ -19,8 +19,11 @@ export interface Product {
   imagePath: string;
   discountPercentage: number;
   image: string;
-  // Add other properties as needed
+  brand: string;
+  specifications: string[];
+  quantity: number;
 }
+
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
@@ -46,13 +49,14 @@ export default function ProductCard({ product }: { product: Product }) {
         >
           {isInWishlist ? <FaHeart size={20} /> : <FaRegHeart size={20} />}
         </button>
-        
+
         <button
-          onClick={() => addToCart(product)}
-          className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
-        >
-          Add to Cart
-        </button>
+  onClick={() => addToCart({ ...product,  })}
+  className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
+>
+  Add to Cart
+</button>
+
         
         <Link 
           href={`/product_details/${product._id}`}
@@ -64,3 +68,5 @@ export default function ProductCard({ product }: { product: Product }) {
     </div>
   );
 }
+
+

@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 function Page() {
   return (
-    <div>
+    <div className='overflow-x-hidden overflow-y-hidden'>
       <Header/>
       {/* Hero Section */}
       <div className="h-48 md:h-80 w-full bg-Bi flex items-center justify-center bg-cover bg-center pt-16 md:pt-24">

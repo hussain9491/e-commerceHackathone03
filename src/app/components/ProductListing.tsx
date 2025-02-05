@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FaHeart } from 'react-icons/fa';
 interface Product {
   id: string;
   name: string;
@@ -14,6 +15,8 @@ interface Product {
   category: string;
 }
 
+
+
 const ProductListing = ({ products }: { products: Product[] }) => {
   return (
     <div >
@@ -22,6 +25,7 @@ const ProductListing = ({ products }: { products: Product[] }) => {
           key={product.id}
           className="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition-transform transform hover:scale-105"
         >
+          <FaHeart className="absolute top-2 right-2 cursor-pointer" size={20}/>
           <Image
             src={product.imageUrl}
             alt={product.name}
