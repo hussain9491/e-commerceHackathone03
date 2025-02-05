@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+/.env
+NEXT_PUBLIC_SANITY_PROJECT_ID="34u0ac5l"
+NEXT_PUBLIC_SANITY_DATASET="production"
+SANITY_API_TOKEN="skUw75asy3C0abfjaUMnmN1uSoRCfO4L8kY059c7J74SFyBAnxbrDgUPs5PKSXDHP0I5r1mjyhKXpaOsCKWFYAtYxls6MpcOVk3FjdH3En8F2YESsXEvyGhMvhK1aFSCKqpSVT22uaH5ARBaOTHhpveOxrac5M7psuV6abdxfyskJfaPxKjI"
 # dependencies
 /node_modules
 /.pnp
