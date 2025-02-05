@@ -19,6 +19,7 @@ export const ProductActions = ({ product }: ProductActionsProps) => {
     <div className="flex gap-4">
       <Button
         onClick={() => addToCart({
+          cartItemId: `${product._id}-${Date.now()}`, // ✅ Unique cartItemId added
           ...product,
           quantity: 1
         })}
