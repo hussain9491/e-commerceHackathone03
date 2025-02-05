@@ -29,6 +29,7 @@
 //   image: string;
 //   brand: string;
 //   quantity: number[];
+  // cartItemId: string; // Added cartItemId property
 // }
 
 // export default async function ProductDetailPage(
@@ -163,12 +164,13 @@ interface SanityProduct {
   image: string;
   brand: string;
   quantity: number[];
+  cartItemId: string; 
 }
 
 export default async function ProductDetailPage(
   { params: promisedParams }: { params: Promise<{ id: string }> }
 ) {
-  // "params" promise ko await kar ke uska value hasil karo
+  // "params" promise ko await kar ke uska value hasil karega
   const { id } = await promisedParams;
 
   // Sanity CMS se product fetch kar rahe hain
@@ -176,7 +178,7 @@ export default async function ProductDetailPage(
     id: id,
   });
 
-  // Agar product nahi milta, to "Product not found" message show karo
+  // Agar product nahi milta, to "Product not found" message show karega
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -230,15 +232,25 @@ export default async function ProductDetailPage(
               <p className="text-gray-600">{product.description}</p>
             </div>
 
-            {/* Add to Cart and Buy Now Buttons */}
-            <div className="flex space-x-4 mt-8">
-              <div className="flex-1 bg-gray-900 text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors mt-12">
-                <AddToCartButton product={product} />
+            
+              
+{/* Add to cart cart button  */}
+
+
+
+
+<div className="flex space-x-4 mt-8">
+                <div className="flex-1 bg-gray-900  text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors mt-12">
+                <AddToCartButton product={{ ...product, cartItemId: product._id }} />
+
+                {/* <AddToCartButton product={product}/> */}
+                </div>
+                <button className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors mt-12">
+                  Buy Now
+                </button>
               </div>
-              <button className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors mt-12">
-                Buy Now
-              </button>
-            </div>
+              
+                          </div>
 
             {/* Features Section */}
             {product.features?.length > 0 && (
@@ -256,6 +268,5 @@ export default async function ProductDetailPage(
           </div>
         </div>
       </div>
-    </div>
   );
 }

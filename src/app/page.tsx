@@ -19,6 +19,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faClock , faCalendarAlt} from "@fortawesome/free-solid-svg-icons";
 
 
+
+
 export default function Home() {
   return (
     <div className="overflow-x-hidden overflow-y-hidden">
@@ -26,6 +28,7 @@ export default function Home() {
         {/* Header */}
 <div >
    <Header/>
+   
 </div>
         <section className="container mx-auto flex items-center justify-center p-8">
           {/* Text Content */}

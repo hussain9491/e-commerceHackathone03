@@ -51,7 +51,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </button>
 
         <button
-  onClick={() => addToCart({ ...product,  })}
+  onClick={() => addToCart({ ...product, cartItemId: `${product._id}-${Date.now()}` })}
   className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
 >
   Add to Cart

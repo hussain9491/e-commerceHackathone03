@@ -3,12 +3,21 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { toast } from 'react-toastify';
 
-interface CartProduct {
+
+export interface CartProduct {
+
   _id: string;
+
   name: string;
+
   price: number;
+
   imageUrl: string;
+
   quantity: number;
+
+  cartItemId: string; // Add cartItemId property
+
 }
 
 interface CartContextType {
