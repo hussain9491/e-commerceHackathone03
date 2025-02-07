@@ -101,7 +101,7 @@ export function CartSheet() {
                       </Button>
                     </div>
                   </div>
-                  <Button
+                  <Button  
                     variant="ghost"
                     size="sm"
                     onClick={() => removeFromCart(product._id)}
@@ -121,8 +121,10 @@ export function CartSheet() {
             <span className="font-semibold">${cartTotal.toFixed(2)}</span>
           </div>
 
+
           <Button className="w-full bg-green-600 hover:bg-green-700">
-            Proceed to Checkout
+            <a href="/cart">
+            Proceed to Checkout </a>
           </Button>
         </div>
       </SheetContent>

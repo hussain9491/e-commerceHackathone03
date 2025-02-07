@@ -65,7 +65,7 @@ export default function Home() {
           Side Table
         </h2>
         <a
-          href="/product/side-table-1"
+          href="/shop"
           className="text-black mt-2 hover:text-gray-700"
         >
           View More
@@ -84,7 +84,7 @@ export default function Home() {
           Side Table
         </h2>
         <a
-          href="/product/side-table-2"
+          href="/shop"
           className="text-black mt-2 hover:text-gray-700"
         >
           View More
@@ -193,7 +193,7 @@ export default function Home() {
 
   {/* View More Link */}
   <div className="flex flex-col items-center pt-10">
-    <a href="#" className="text-lg font-semibold text-black hover:underline">
+    <a href="/moreitems" className="text-lg font-semibold text-black hover:underline">
       View More
     </a>
     <p className="text-black font-bold mt-1">____________</p>
@@ -215,8 +215,8 @@ export default function Home() {
   <div className="flex flex-col items-center justify-center h-full md:w-[40%] bg-[#FFF8E7] font-sans p-8 md:pt-24">
     <h2 className="text-xl text-black font-semibold mb-2">New Arrivals</h2>
     <h1 className="text-4xl md:text-5xl font-bold text-black mb-6 text-center">Asgaard sofa</h1>
-    <button className="px-12 md:px-20 py-4 text-lg font-semibold text-black mt-8 bg-white border border-black hover:bg-gray-100 transition">
-      Order Now
+    <button  className="px-12 md:px-20 py-4 text-lg font-semibold text-black mt-8 bg-white border border-black hover:bg-gray-100 transition">
+    <a href="/shop">  Order Now</a>
     </button>
   </div>
 </div>

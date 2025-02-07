@@ -31,6 +31,7 @@ import './globals.css';
 import { CartProvider } from '../context/Cartcontext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from './components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -51,6 +52,7 @@ export default function RootLayout({
           {children}
           <ToastContainer position="bottom-right" />
         </CartProvider>
+        <Footer/>
       </body>
     </html>
   );
