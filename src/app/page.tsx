@@ -17,6 +17,7 @@ import Header from "./components/Header";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faClock , faCalendarAlt} from "@fortawesome/free-solid-svg-icons";
+import { Link } from "lucide-react";
 
 
 
@@ -193,9 +194,9 @@ export default function Home() {
 
   {/* View More Link */}
   <div className="flex flex-col items-center pt-10">
-    <a href="/moreitems" className="text-lg font-semibold text-black hover:underline">
+    <Link href="/moreitems" className="text-lg font-semibold text-black hover:underline">
       View More
-    </a>
+      </Link>
     <p className="text-black font-bold mt-1">____________</p>
   </div>
 </div>
@@ -215,9 +216,11 @@ export default function Home() {
   <div className="flex flex-col items-center justify-center h-full md:w-[40%] bg-[#FFF8E7] font-sans p-8 md:pt-24">
     <h2 className="text-xl text-black font-semibold mb-2">New Arrivals</h2>
     <h1 className="text-4xl md:text-5xl font-bold text-black mb-6 text-center">Asgaard sofa</h1>
+   
+   <Link href="/shop">
     <button  className="px-12 md:px-20 py-4 text-lg font-semibold text-black mt-8 bg-white border border-black hover:bg-gray-100 transition">
-    <a href="/shop">  Order Now</a>
-    </button>
+      Order Now
+    </button> </Link>
   </div>
 </div>
 

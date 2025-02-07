@@ -120,12 +120,12 @@ export function CartSheet() {
             <span className="font-semibold">Total:</span>
             <span className="font-semibold">${cartTotal.toFixed(2)}</span>
           </div>
-
-
+            
+<Link href="/cart">
           <Button className="w-full bg-green-600 hover:bg-green-700">
-            <a href="/cart">
-            Proceed to Checkout </a>
-          </Button>
+            
+            Proceed to Checkout
+          </Button> </Link>
         </div>
       </SheetContent>
     </Sheet>

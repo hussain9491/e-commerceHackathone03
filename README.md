@@ -36,3 +36,11 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 "# hackathon_03" 
 "# hackathon_03" 
+
+
+
+
+
+
+
+ye hackathon boht mehnat or boht raato ki neend barbaad karke banaya hai mene please ise reject nhi karna me janta hun is me boht sii kamii hai abhi but in futture me sab theek kar lunga
