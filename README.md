@@ -43,4 +43,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 
-ye hackathon boht mehnat or boht raato ki neend barbaad karke banaya hai mene please ise reject nhi karna me janta hun is me boht sii kamii hai abhi but in futture me sab theek kar lunga
+ye hackathon boht mehnat or boht raato ki neend barbaad karke banaya hai mene please ise reject nhi karna me janta hun is me boht sii kamii hai abhi but in futture me sab theek kar lunga.
+
+
+abhi mene isme add to cart wale page ko route kardya
+
+abhi mene isme loading ki file add ki hai jo page load hone per loading show karwa rha h simply root directory me!
