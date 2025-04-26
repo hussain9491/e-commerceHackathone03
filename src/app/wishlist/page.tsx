@@ -4,14 +4,14 @@ import { useWishlist } from '../../hooks/usewishlist';
 import Header from '../components/Header';
 import Image from 'next/image';
 import Link from "next/link";
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+
 export default function WishlistPage() {
-  const { wishlist, removeFromWishlist } = useWishlist();
+  const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
 
   return (
     <div className="bg-gray-100 min-h-screen">
       <Header />
-      
-
       
       <div className="container mx-auto p-8">
         <h1 className="text-3xl font-bold mb-8">Your Wishlist</h1>
@@ -34,7 +34,7 @@ export default function WishlistPage() {
                   onClick={() => removeFromWishlist(item._id)}
                   className="text-red-500 hover:text-red-700"
                 >
-                  Remove
+                  {<FaHeart size={20} />}
                 </button>
                 <Link 
                   href={`/product_details/${item._id}`}

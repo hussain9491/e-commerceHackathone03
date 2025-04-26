@@ -4,37 +4,21 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export interface Product {
-
   _id: string;
-
   name: string;
-
   price: number;
-
   imageUrl: string;
-
   id: string;
-
   stockLevel: number;
-
   description: string;
-
   category: string;
-
   isFeaturedProduct: boolean;
-
   imagePath: string;
-
   discountPercentage: number;
-
   image: string;
-
   brand: string;
-
   specifications: string[];
-
   quantity: number;
-
 }
 
 export const useWishlist = () => {

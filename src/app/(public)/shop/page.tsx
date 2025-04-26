@@ -16,6 +16,7 @@ import { HiAdjustments, HiDotsHorizontal, HiSwitchVertical } from 'react-icons/h
 //   HiAdjustments,
 interface Product {
   id: string;
+  _id: string;
   name: string;
   imageUrl: string;
   price: number;
@@ -52,7 +53,11 @@ function ShopContent() {
     const fetchProducts = async () => {
       try {
         const productsData = await sanityFetch({ query: allProducts });
-        setProducts(productsData);
+        const mappedProducts = productsData.map((product: any) => ({
+          ...product,
+          _id: product.id
+        }));
+        setProducts(mappedProducts);
       } catch (error) {
         console.error('Error fetching products:', error);
       }

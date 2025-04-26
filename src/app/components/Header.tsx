@@ -1,24 +1,20 @@
-
-// app/components/Header.tsx (updated)
+// app/components/Header.tsx
 "use client";
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FaUser, FaSearch, FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
-// import { useCart } from '../../hooks/useCart';
 import { useWishlist } from '../../hooks/usewishlist';
 import { CartSheet } from '../cartsheet';
 import { useCart } from '../../context/Cartcontext';
 
 export default function Header() {
-  
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const { cart } = useCart();
   const { wishlist } = useWishlist();
-
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +24,7 @@ export default function Header() {
       setSearchTerm('');
     }
   };
-  
+
   return (
     <header className="p-4 h-20 items-center relative">
       <div className="container mx-auto flex justify-between pt-3 items-center">
@@ -44,11 +40,10 @@ export default function Header() {
 
         {/* Navigation Links (Desktop) */}
         <nav className="hidden md:flex space-x-16 justify-center pl-[40%]">
-        <Link href="/">Home</Link>
+          <Link href="/">Home</Link>
           <Link href="/shop">Shop</Link>
           <Link href="/blog">Blog</Link>
           <Link href="/contact">Contact</Link>
-          {/* ... existing nav links ... */}
         </nav>
 
         {/* Icons */}
@@ -59,8 +54,8 @@ export default function Header() {
               <input
                 type="text"
                 value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-                className=" p-1 border rounded text-black"
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="p-1 border rounded text-black"
                 autoFocus
                 onBlur={() => setShowSearch(false)}
                 placeholder="Search product..."
@@ -72,19 +67,16 @@ export default function Header() {
             </button>
           )}
           
-            {/* ... wishlist icon ... */}
-<Link href="/wishlist" className="relative">
+          <Link href="/wishlist" className="relative">
             <FaHeart className="hover:text-gray-700 cursor-pointer" size={20} />
-             {wishlist.length > 0 && (
+            {wishlist.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                 {wishlist.length}
               </span>
             )}
-        </Link>
+          </Link>
           <Link href="" className="relative">
-            {/* ... cart icon ... */}
             <CartSheet />
-          
             {cart.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                 {cart.length}
@@ -95,7 +87,6 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu */}
-      {/* ... existing mobile menu ... */}
       <div className={`md:hidden absolute top-20 left-0 w-full bg-white shadow-lg transition-all duration-300 ${
         isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
       }`}>

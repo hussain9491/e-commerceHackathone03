@@ -28,7 +28,7 @@ function page() {
           <label htmlFor="message" className="block font-semibold ml-0  justify-start  text-gray-900   pl-20 pt-10 text-lg  ">
           Username or email address
           </label>
-          <textarea
+          <input
             id="message"
             
             className="mt-1 block w-[70%] pl-9 h-20 ml-12 rounded-md border border-gray-700 shadow-md focus:border-black focus:ring focus:ring-black focus:ring-opacity-50"
@@ -40,7 +40,7 @@ function page() {
           <label htmlFor="message" className="block font-semibold ml-0  justify-start  text-gray-900   pl-12 pt-14 text-lg  ">
           Password
           </label>
-          <textarea
+          <input
             id="message"
             
             className="mt-1 block w-[70%] pl-9 h-20 ml-12 rounded-md border border-gray-700 shadow-md focus:border-black focus:ring focus:ring-black focus:ring-opacity-50"
