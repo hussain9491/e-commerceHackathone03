@@ -40,7 +40,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 "# hackathon_03" 
 "# hackathon_03" 
 
-
+ye folder copy hackathone -> uiux -> my-app me hai laptop me
+abhi isme wishlist kafii hadd tk theek ki h or blog ka page complete kia h 
 
 
 
