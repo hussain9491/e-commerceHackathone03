@@ -12,20 +12,9 @@ import {
   HiSquares2X2,
   HiBars3BottomLeft, HiAdjustmentsHorizontal} from 'react-icons/hi2';
 import { HiAdjustments, HiDotsHorizontal, HiSwitchVertical } from 'react-icons/hi';
+import { useWishlist, Product } from "@/hooks/usewishlist";
 // HiDotsHorizontal, 
 //   HiAdjustments,
-interface Product {
-  id: string;
-  _id: string;
-  name: string;
-  imageUrl: string;
-  price: number;
-  description: string;
-  discountPercentage: number;
-  isFeaturedProduct: boolean;
-  stockLevel: number;
-  category: string;
-}
 
 // Main page component with Suspense boundary
 export default function ShopPage() {
@@ -55,7 +44,12 @@ function ShopContent() {
         const productsData = await sanityFetch({ query: allProducts });
         const mappedProducts = productsData.map((product: any) => ({
           ...product,
-          _id: product.id
+          _id: product.id,
+          imagePath: product.imageUrl,
+          image: product.imageUrl,
+          brand: product.brand || 'Unknown',
+          specifications: product.specifications || [],
+          quantity: 1
         }));
         setProducts(mappedProducts);
       } catch (error) {
