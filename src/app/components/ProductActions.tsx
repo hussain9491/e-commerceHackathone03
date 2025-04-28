@@ -1,6 +1,6 @@
 'use client';
 
-import { useCart } from '../../hooks/useCart';
+import { useCart } from '../../context/Cartcontext';
 import { Button } from '@/components/ui/button';
 
 interface ProductActionsProps {
@@ -19,8 +19,8 @@ export const ProductActions = ({ product }: ProductActionsProps) => {
     <div className="flex gap-4">
       <Button
         onClick={() => addToCart({
-          cartItemId: `${product._id}-${Date.now()}`, // ✅ Unique cartItemId added
           ...product,
+          cartItemId: `${product._id}-${Date.now()}`,
           quantity: 1
         })}
         className="flex-1 bg-primary hover:bg-primary-dark"

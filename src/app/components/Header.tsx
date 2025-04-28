@@ -69,19 +69,15 @@ export default function Header() {
           
           <Link href="/wishlist" className="relative">
             <FaHeart className="hover:text-gray-700 cursor-pointer" size={20} />
-            {wishlist.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                {wishlist.length}
-              </span>
-            )}
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+              {wishlist.length}
+            </span>
           </Link>
           <Link href="" className="relative">
             <CartSheet />
-            {cart.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                {cart.length}
-              </span>
-            )}
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+              {cart.length}
+            </span>
           </Link>
         </div>
       </div>

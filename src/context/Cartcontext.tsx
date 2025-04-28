@@ -51,10 +51,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const addToCart = (product: CartProduct) => {
     setCart(prev => {
-      const existingItem = prev.find(item => item._id === product._id);
+      const existingItem = prev.find(item => item.cartItemId === product.cartItemId);
       if (existingItem) {
         return prev.map(item =>
-          item._id === product._id
+          item.cartItemId === product.cartItemId
             ? { ...item, quantity: item.quantity + product.quantity }
             : item
         );
@@ -64,16 +64,16 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     toast.success('Added to cart! 🛒');
   };
 
-  const removeFromCart = (productId: string) => {
-    setCart(prev => prev.filter(item => item._id !== productId));
+  const removeFromCart = (cartItemId: string) => {
+    setCart(prev => prev.filter(item => item.cartItemId !== cartItemId));
     toast.error('Removed from cart ❌');
   };
 
-  const updateQuantity = (productId: string, quantity: number) => {
+  const updateQuantity = (cartItemId: string, quantity: number) => {
     if (quantity < 1) return;
     setCart(prev =>
       prev.map(item =>
-        item._id === productId ? { ...item, quantity } : item
+        item.cartItemId === cartItemId ? { ...item, quantity } : item
       )
     );
   };
@@ -84,7 +84,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const cartTotal = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + (Number(item.price) * item.quantity),
     0
   );
 

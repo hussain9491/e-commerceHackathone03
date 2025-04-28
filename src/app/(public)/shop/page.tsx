@@ -12,9 +12,22 @@ import {
   HiSquares2X2,
   HiBars3BottomLeft, HiAdjustmentsHorizontal} from 'react-icons/hi2';
 import { HiAdjustments, HiDotsHorizontal, HiSwitchVertical } from 'react-icons/hi';
-import { useWishlist, Product } from "@/hooks/usewishlist";
+// import { useWishlist, Product } from "@/hooks/usewishlist";
 // HiDotsHorizontal, 
 //   HiAdjustments,
+
+interface Product {
+  id: string;
+  _id?: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+  category: string;
+  description: string;
+  stockLevel: number;
+  isFeaturedProduct: boolean;
+  discountPercentage: number;
+}
 
 // Main page component with Suspense boundary
 export default function ShopPage() {

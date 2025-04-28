@@ -46,4 +46,4 @@ export const useWishlist = () => {
   };
 
   return { wishlist, addToWishlist, removeFromWishlist };
-};
+}; 

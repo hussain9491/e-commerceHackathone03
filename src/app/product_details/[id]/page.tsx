@@ -4,7 +4,7 @@ import { productById } from '@/sanity/lib/query';
 import Image from 'next/image';
 import Header from '@/app/components/Header';
 import { AddToCartButton } from '@/app/components/AddtoButton';
-
+import Link from 'next/link';
 interface SanityProduct {
   _id: string;
   id: string;
@@ -103,12 +103,19 @@ export default async function ProductDetailPage(
 
 <div className="flex space-x-4 mt-8">
                 <div className="flex-1 bg-gray-900  text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors mt-12">
-                <AddToCartButton product={{ ...product, cartItemId: product._id }} />
-
+                <AddToCartButton 
+    product={{ 
+      ...product, 
+      cartItemId: product._id, 
+      quantity: product.quantity?.[0] ?? 1
+    }} 
+  />
                 {/* <AddToCartButton product={product}/> */}
                 </div>
                 <button className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors mt-12">
+               <Link href="../cart">
                   Buy Now
+                </Link>
                 </button>
               </div>
               

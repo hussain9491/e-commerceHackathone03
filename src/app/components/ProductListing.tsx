@@ -3,7 +3,15 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { useWishlist, Product } from '../../hooks/usewishlist';
+import { useWishlist } from '../../context/WishlistContext';
+
+interface Product {
+  id: string;
+  _id?: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+}
 
 const ProductListing = ({ products }: { products: Product[] }) => {
   const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();

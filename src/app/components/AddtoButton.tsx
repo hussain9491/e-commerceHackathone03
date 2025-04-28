@@ -78,9 +78,8 @@ export interface Product {
   image: string;
   brand: string;
   specifications: string[];
-  quantity: number[];
+  quantity: number;
   cartItemId: string;
-  
 }
 
 export const AddToCartButton = ({ product }: { product: Product }) => {
@@ -95,7 +94,7 @@ export const AddToCartButton = ({ product }: { product: Product }) => {
           price: product.price,
           imageUrl: product.imageUrl,
           quantity: 1,
-          cartItemId: product.id // Generate a unique cartItemId
+          cartItemId: uuidv4() // Generate a unique cartItemId
         })
       }
       className="ml-12"

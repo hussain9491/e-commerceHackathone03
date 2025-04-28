@@ -1,6 +1,6 @@
 // app/wishlist/page.tsx
 "use client"
-import { useWishlist } from '../../hooks/usewishlist';
+import { useWishlist } from '../../context/WishlistContext';
 import Header from '../components/Header';
 import Image from 'next/image';
 import Link from "next/link";

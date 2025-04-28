@@ -2,7 +2,7 @@
 "use client";
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCart } from '../../hooks/useCart';
+import { useCart } from '../../context/Cartcontext';
 import { useWishlist } from '../../hooks/usewishlist';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
@@ -51,13 +51,16 @@ export default function ProductCard({ product }: { product: Product }) {
         </button>
 
         <button
-  onClick={() => addToCart({ ...product, cartItemId: `${product._id}-${Date.now()}` })}
-  className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
->
-  Add to Cart
-</button>
+          onClick={() => addToCart({ 
+            ...product, 
+            cartItemId: `${product._id}-${Date.now()}`,
+            quantity: 1 
+          })}
+          className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
+        >
+          Add to Cart
+        </button>
 
-        
         <Link 
           href={`/product_details/${product._id}`}
           className="text-blue-500 hover:text-blue-700"
